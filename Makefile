@@ -1,18 +1,3 @@
-GOVERSION=go1.13.4
-
-export PROJDIR := $(shell pwd)
-export GOBIN := $(PROJDIR)/bin
-export PATH := $(PATH):$(GOBIN)
-
-GO_IN_PATH := $(shell command -v go 2> /dev/null)
-ifndef GO_IN_PATH
-export PATH := $(PATH):/usr/local/$(GOVERSION)/bin:$(GOBIN)
-export GOROOT=/usr/local/$(GOVERSION)
-endif
-
-grpcgatewaypath=$(shell go list -m -f '{{.Dir}}' github.com/grpc-ecosystem/grpc-gateway)
-googleapis_path=$(grpcgatewaypath)/third_party/googleapis
-
 # init go modules
 init:
 	go mod tidy
@@ -22,16 +7,15 @@ vendor: init
 	go mod vendor
 
 # build golang proto compiler
-bin/protoc-gen-go:
-	go install -mod=vendor -v github.com/golang/protobuf/protoc-gen-go
+protoc-gen-go:
+	go get -u github.com/golang/protobuf/protoc-gen-go
 
-# build bfruntime proto file.
-bfruntime: init bin/protoc-gen-go
-	protoc -I src/bfruntime/ -I ${googleapis_path} --go_out=plugins=grpc:./  src/bfruntime/bfruntime.proto
+# build proto file.
+compile: vendor protoc-gen-go
+	protoc -I intern/ --go_out=plugins=grpc:intern/  intern/arash.proto
 
-# build our golang source
-install:
-	go install -mod=vendor -v ./...
+build: vendor
+	go build -o bin/arash  main.go
 
 # clean all build outputs
 clean:
@@ -40,5 +24,5 @@ clean:
 	rm -rf pkg/
 	go clean -cache
  
-.PHONY: init install clean bfruntime
-.DEFAULT_GOAL:=install
+.PHONY: init clean compile build
+.DEFAULT_GOAL:=build

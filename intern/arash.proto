@@ -1,0 +1,56 @@
+/* =====================================================
+    @Name:     Arash
+    @Company:  MN8 Technology
+    @Author:   HS Hayman
+   ===================================================== */
+
+// Proto version
+syntax = "proto3";
+
+// Package name
+package intern;
+
+// ----------------------
+//    MESSAGES
+// ----------------------
+message Empty {}
+
+message QRCodeRequest {
+    string did = 1;
+    string payment_token = 2;
+    string event_id = 3;
+}
+
+message QRCodeResponse {
+    string data = 1;
+}
+
+message Events {
+    repeated Event data = 1;
+}
+
+message Event {
+    string band = 1;
+    string venue = 2;
+    int64 price = 3;
+    string event_id = 4;
+    string date = 5;
+}
+
+// ----------------------
+//    SERVICES
+// ----------------------
+service Gigsafe {
+
+    // Get Events
+    rpc GetEvents (Empty) returns (Events);
+
+    // Request Ticket
+    rpc RequestTicket (QRCodeRequest) returns (QRCodeResponse);
+    
+}
+
+service PaymentGateway {
+
+    //
+}
