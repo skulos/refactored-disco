@@ -15,6 +15,24 @@ package intern;
 // ----------------------
 message Empty {}
 
+message Success {
+    string old_did = 1;
+    bool isForgotten = 2;
+}
+
+message DID {
+    string data = 1;
+}
+
+message Ticket {
+    int64 amount = 1;
+    int64 event = 2;
+}
+
+message Tickets {
+    repeated Tickets tickets = 1;
+}
+
 message QRCodeRequest {
     string did = 1;
     string payment_token = 2;
@@ -23,10 +41,15 @@ message QRCodeRequest {
 
 message QRCodeResponse {
     string data = 1;
+    Event event = 2;
 }
 
 message Events {
     repeated Event data = 1;
+}
+
+message EventIDs {
+    repeated int64 event_ids = 1;
 }
 
 message Event {
@@ -37,13 +60,33 @@ message Event {
     string date = 5;
 }
 
+message PaymentRequest {
+    bool isValid = 1;
+    int64 amount = 2;
+    string did = 3;  
+}
+
+message PaymentResponse {
+    bool isValid = 1;
+    string token = 2;
+}
+
 // ----------------------
 //    SERVICES
 // ----------------------
 service Gigsafe {
 
+    // Forget Me
+    rpc ForgetMe (Empty) returns (Success);
+
+    // Get DID
+    rpc GetDID (Empty) returns (DID);
+
     // Get Events
     rpc GetEvents (Empty) returns (Events);
+
+    // Check Tickets
+    rpc CheckTickets (EventIDs) returns (Tickets);
 
     // Request Ticket
     rpc RequestTicket (QRCodeRequest) returns (QRCodeResponse);
@@ -52,5 +95,6 @@ service Gigsafe {
 
 service PaymentGateway {
 
-    //
+    // Payment
+    rpc Payment (PaymentRequest) returns (PaymentResponse);
 }
