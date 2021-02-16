@@ -10,9 +10,10 @@ syntax = "proto3";
 // Package name
 package intern;
 
-// ----------------------
-//    MESSAGES
-// ----------------------
+// ------------------------
+//       MESSAGES
+// ------------------------
+// == 1. Default Message ==
 message Empty {}
 
 message Success {
@@ -20,10 +21,25 @@ message Success {
     bool isForgotten = 2;
 }
 
+// == 2. Payments ==
+message PaymentRequest {
+    bool isValid = 1;
+    int64 amount = 2;
+    string did = 3;  
+}
+
+message PaymentResponse {
+    bool isValid = 1;
+    string token = 2;
+}
+
+// == 3. DID Information ==
 message DID {
     string data = 1;
 }
 
+
+// == 4. Ticket Data ==
 message Ticket {
     int64 amount = 1;
     int64 event = 2;
@@ -44,6 +60,7 @@ message QRCodeResponse {
     Event event = 2;
 }
 
+// == 5. Gig Data ==
 message Events {
     repeated Event data = 1;
 }
@@ -60,27 +77,39 @@ message Event {
     string date = 5;
 }
 
-message PaymentRequest {
-    bool isValid = 1;
-    int64 amount = 2;
-    string did = 3;  
+
+// == 6. Wallet Data ==
+message PrivateKey {
+    string did = 1;
+    string key = 2;
 }
 
-message PaymentResponse {
-    bool isValid = 1;
-    string token = 2;
+message PublicKey {
+    string did = 1;
+    string key = 2;
 }
+
+message Fields {
+    string key = 1;
+    string value = 2;
+}
+
+message Credential {
+    string name = 1;
+    repeated Fields fields = 2;
+}
+
+message Wallet {
+
+    string DID = 1;
+    repeated Credential credentials = 2;
+}
+
 
 // ----------------------
 //    SERVICES
 // ----------------------
 service Gigsafe {
-
-    // Forget Me
-    rpc ForgetMe (Empty) returns (Success);
-
-    // Get DID
-    rpc GetDID (Empty) returns (DID);
 
     // Get Events
     rpc GetEvents (Empty) returns (Events);
@@ -97,4 +126,31 @@ service PaymentGateway {
 
     // Payment
     rpc Payment (PaymentRequest) returns (PaymentResponse);
+}
+
+service IdentityNetwork {
+
+    // Forget Me
+    rpc ForgetMe (Empty) returns (Success);
+
+    // Get DID
+    rpc GetDID (Empty) returns (DID);
+}
+
+service Agency {
+
+    // Open Wallet
+    rpc OpenWallet (DID) returns (Wallet);
+
+    // Exchange Keys
+    rpc ExchangeKeys (PublicKey) returns (PublicKey);
+
+    // Add credential
+    rpc AddCredential (Credential) returns (Wallet);
+
+    // GetCredentials
+    rpc GetCredential (Wallet) returns (Credential);
+
+    // Revoke Credential
+    rpc RevokeCredential (Credential) returns (Wallet);
 }

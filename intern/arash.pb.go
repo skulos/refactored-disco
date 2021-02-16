@@ -39,9 +39,10 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-// ----------------------
-//    MESSAGES
-// ----------------------
+// ------------------------
+//       MESSAGES
+// ------------------------
+// == 1. Default Message ==
 type Empty struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -80,6 +81,331 @@ func (*Empty) Descriptor() ([]byte, []int) {
 	return file_arash_proto_rawDescGZIP(), []int{0}
 }
 
+type Success struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	OldDid      string `protobuf:"bytes,1,opt,name=old_did,json=oldDid,proto3" json:"old_did,omitempty"`
+	IsForgotten bool   `protobuf:"varint,2,opt,name=isForgotten,proto3" json:"isForgotten,omitempty"`
+}
+
+func (x *Success) Reset() {
+	*x = Success{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_arash_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Success) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Success) ProtoMessage() {}
+
+func (x *Success) ProtoReflect() protoreflect.Message {
+	mi := &file_arash_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Success.ProtoReflect.Descriptor instead.
+func (*Success) Descriptor() ([]byte, []int) {
+	return file_arash_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Success) GetOldDid() string {
+	if x != nil {
+		return x.OldDid
+	}
+	return ""
+}
+
+func (x *Success) GetIsForgotten() bool {
+	if x != nil {
+		return x.IsForgotten
+	}
+	return false
+}
+
+// == 2. Payments ==
+type PaymentRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IsValid bool   `protobuf:"varint,1,opt,name=isValid,proto3" json:"isValid,omitempty"`
+	Amount  int64  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	Did     string `protobuf:"bytes,3,opt,name=did,proto3" json:"did,omitempty"`
+}
+
+func (x *PaymentRequest) Reset() {
+	*x = PaymentRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_arash_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PaymentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PaymentRequest) ProtoMessage() {}
+
+func (x *PaymentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arash_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PaymentRequest.ProtoReflect.Descriptor instead.
+func (*PaymentRequest) Descriptor() ([]byte, []int) {
+	return file_arash_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *PaymentRequest) GetIsValid() bool {
+	if x != nil {
+		return x.IsValid
+	}
+	return false
+}
+
+func (x *PaymentRequest) GetAmount() int64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *PaymentRequest) GetDid() string {
+	if x != nil {
+		return x.Did
+	}
+	return ""
+}
+
+type PaymentResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IsValid bool   `protobuf:"varint,1,opt,name=isValid,proto3" json:"isValid,omitempty"`
+	Token   string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
+}
+
+func (x *PaymentResponse) Reset() {
+	*x = PaymentResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_arash_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PaymentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PaymentResponse) ProtoMessage() {}
+
+func (x *PaymentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_arash_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PaymentResponse.ProtoReflect.Descriptor instead.
+func (*PaymentResponse) Descriptor() ([]byte, []int) {
+	return file_arash_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *PaymentResponse) GetIsValid() bool {
+	if x != nil {
+		return x.IsValid
+	}
+	return false
+}
+
+func (x *PaymentResponse) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+// == 3. DID Information ==
+type DID struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data string `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *DID) Reset() {
+	*x = DID{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_arash_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DID) ProtoMessage() {}
+
+func (x *DID) ProtoReflect() protoreflect.Message {
+	mi := &file_arash_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DID.ProtoReflect.Descriptor instead.
+func (*DID) Descriptor() ([]byte, []int) {
+	return file_arash_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *DID) GetData() string {
+	if x != nil {
+		return x.Data
+	}
+	return ""
+}
+
+// == 4. Ticket Data ==
+type Ticket struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Amount int64 `protobuf:"varint,1,opt,name=amount,proto3" json:"amount,omitempty"`
+	Event  int64 `protobuf:"varint,2,opt,name=event,proto3" json:"event,omitempty"`
+}
+
+func (x *Ticket) Reset() {
+	*x = Ticket{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_arash_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Ticket) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Ticket) ProtoMessage() {}
+
+func (x *Ticket) ProtoReflect() protoreflect.Message {
+	mi := &file_arash_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Ticket.ProtoReflect.Descriptor instead.
+func (*Ticket) Descriptor() ([]byte, []int) {
+	return file_arash_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *Ticket) GetAmount() int64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *Ticket) GetEvent() int64 {
+	if x != nil {
+		return x.Event
+	}
+	return 0
+}
+
+type Tickets struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Tickets []*Tickets `protobuf:"bytes,1,rep,name=tickets,proto3" json:"tickets,omitempty"`
+}
+
+func (x *Tickets) Reset() {
+	*x = Tickets{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_arash_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Tickets) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Tickets) ProtoMessage() {}
+
+func (x *Tickets) ProtoReflect() protoreflect.Message {
+	mi := &file_arash_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Tickets.ProtoReflect.Descriptor instead.
+func (*Tickets) Descriptor() ([]byte, []int) {
+	return file_arash_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Tickets) GetTickets() []*Tickets {
+	if x != nil {
+		return x.Tickets
+	}
+	return nil
+}
+
 type QRCodeRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -93,7 +419,7 @@ type QRCodeRequest struct {
 func (x *QRCodeRequest) Reset() {
 	*x = QRCodeRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_arash_proto_msgTypes[1]
+		mi := &file_arash_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -106,7 +432,7 @@ func (x *QRCodeRequest) String() string {
 func (*QRCodeRequest) ProtoMessage() {}
 
 func (x *QRCodeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arash_proto_msgTypes[1]
+	mi := &file_arash_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119,7 +445,7 @@ func (x *QRCodeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QRCodeRequest.ProtoReflect.Descriptor instead.
 func (*QRCodeRequest) Descriptor() ([]byte, []int) {
-	return file_arash_proto_rawDescGZIP(), []int{1}
+	return file_arash_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *QRCodeRequest) GetDid() string {
@@ -148,13 +474,14 @@ type QRCodeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Data string `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	Data  string `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	Event *Event `protobuf:"bytes,2,opt,name=event,proto3" json:"event,omitempty"`
 }
 
 func (x *QRCodeResponse) Reset() {
 	*x = QRCodeResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_arash_proto_msgTypes[2]
+		mi := &file_arash_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -167,7 +494,7 @@ func (x *QRCodeResponse) String() string {
 func (*QRCodeResponse) ProtoMessage() {}
 
 func (x *QRCodeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arash_proto_msgTypes[2]
+	mi := &file_arash_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -180,7 +507,7 @@ func (x *QRCodeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QRCodeResponse.ProtoReflect.Descriptor instead.
 func (*QRCodeResponse) Descriptor() ([]byte, []int) {
-	return file_arash_proto_rawDescGZIP(), []int{2}
+	return file_arash_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *QRCodeResponse) GetData() string {
@@ -190,6 +517,14 @@ func (x *QRCodeResponse) GetData() string {
 	return ""
 }
 
+func (x *QRCodeResponse) GetEvent() *Event {
+	if x != nil {
+		return x.Event
+	}
+	return nil
+}
+
+// == 5. Gig Data ==
 type Events struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -201,7 +536,7 @@ type Events struct {
 func (x *Events) Reset() {
 	*x = Events{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_arash_proto_msgTypes[3]
+		mi := &file_arash_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -214,7 +549,7 @@ func (x *Events) String() string {
 func (*Events) ProtoMessage() {}
 
 func (x *Events) ProtoReflect() protoreflect.Message {
-	mi := &file_arash_proto_msgTypes[3]
+	mi := &file_arash_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -227,12 +562,59 @@ func (x *Events) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Events.ProtoReflect.Descriptor instead.
 func (*Events) Descriptor() ([]byte, []int) {
-	return file_arash_proto_rawDescGZIP(), []int{3}
+	return file_arash_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Events) GetData() []*Event {
 	if x != nil {
 		return x.Data
+	}
+	return nil
+}
+
+type EventIDs struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	EventIds []int64 `protobuf:"varint,1,rep,packed,name=event_ids,json=eventIds,proto3" json:"event_ids,omitempty"`
+}
+
+func (x *EventIDs) Reset() {
+	*x = EventIDs{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_arash_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EventIDs) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EventIDs) ProtoMessage() {}
+
+func (x *EventIDs) ProtoReflect() protoreflect.Message {
+	mi := &file_arash_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EventIDs.ProtoReflect.Descriptor instead.
+func (*EventIDs) Descriptor() ([]byte, []int) {
+	return file_arash_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *EventIDs) GetEventIds() []int64 {
+	if x != nil {
+		return x.EventIds
 	}
 	return nil
 }
@@ -252,7 +634,7 @@ type Event struct {
 func (x *Event) Reset() {
 	*x = Event{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_arash_proto_msgTypes[4]
+		mi := &file_arash_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -265,7 +647,7 @@ func (x *Event) String() string {
 func (*Event) ProtoMessage() {}
 
 func (x *Event) ProtoReflect() protoreflect.Message {
-	mi := &file_arash_proto_msgTypes[4]
+	mi := &file_arash_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -278,7 +660,7 @@ func (x *Event) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Event.ProtoReflect.Descriptor instead.
 func (*Event) Descriptor() ([]byte, []int) {
-	return file_arash_proto_rawDescGZIP(), []int{4}
+	return file_arash_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Event) GetBand() string {
@@ -316,39 +698,392 @@ func (x *Event) GetDate() string {
 	return ""
 }
 
+// == 6. Wallet Data ==
+type PrivateKey struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Did string `protobuf:"bytes,1,opt,name=did,proto3" json:"did,omitempty"`
+	Key string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+}
+
+func (x *PrivateKey) Reset() {
+	*x = PrivateKey{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_arash_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PrivateKey) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PrivateKey) ProtoMessage() {}
+
+func (x *PrivateKey) ProtoReflect() protoreflect.Message {
+	mi := &file_arash_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PrivateKey.ProtoReflect.Descriptor instead.
+func (*PrivateKey) Descriptor() ([]byte, []int) {
+	return file_arash_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *PrivateKey) GetDid() string {
+	if x != nil {
+		return x.Did
+	}
+	return ""
+}
+
+func (x *PrivateKey) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+type PublicKey struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Did string `protobuf:"bytes,1,opt,name=did,proto3" json:"did,omitempty"`
+	Key string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+}
+
+func (x *PublicKey) Reset() {
+	*x = PublicKey{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_arash_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PublicKey) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PublicKey) ProtoMessage() {}
+
+func (x *PublicKey) ProtoReflect() protoreflect.Message {
+	mi := &file_arash_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PublicKey.ProtoReflect.Descriptor instead.
+func (*PublicKey) Descriptor() ([]byte, []int) {
+	return file_arash_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *PublicKey) GetDid() string {
+	if x != nil {
+		return x.Did
+	}
+	return ""
+}
+
+func (x *PublicKey) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+type Fields struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Value string `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+}
+
+func (x *Fields) Reset() {
+	*x = Fields{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_arash_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Fields) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Fields) ProtoMessage() {}
+
+func (x *Fields) ProtoReflect() protoreflect.Message {
+	mi := &file_arash_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Fields.ProtoReflect.Descriptor instead.
+func (*Fields) Descriptor() ([]byte, []int) {
+	return file_arash_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *Fields) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *Fields) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
+type Credential struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name   string    `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Fields []*Fields `protobuf:"bytes,2,rep,name=fields,proto3" json:"fields,omitempty"`
+}
+
+func (x *Credential) Reset() {
+	*x = Credential{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_arash_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Credential) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Credential) ProtoMessage() {}
+
+func (x *Credential) ProtoReflect() protoreflect.Message {
+	mi := &file_arash_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Credential.ProtoReflect.Descriptor instead.
+func (*Credential) Descriptor() ([]byte, []int) {
+	return file_arash_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *Credential) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Credential) GetFields() []*Fields {
+	if x != nil {
+		return x.Fields
+	}
+	return nil
+}
+
+type Wallet struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DID         string        `protobuf:"bytes,1,opt,name=DID,proto3" json:"DID,omitempty"`
+	Credentials []*Credential `protobuf:"bytes,2,rep,name=credentials,proto3" json:"credentials,omitempty"`
+}
+
+func (x *Wallet) Reset() {
+	*x = Wallet{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_arash_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Wallet) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Wallet) ProtoMessage() {}
+
+func (x *Wallet) ProtoReflect() protoreflect.Message {
+	mi := &file_arash_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Wallet.ProtoReflect.Descriptor instead.
+func (*Wallet) Descriptor() ([]byte, []int) {
+	return file_arash_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *Wallet) GetDID() string {
+	if x != nil {
+		return x.DID
+	}
+	return ""
+}
+
+func (x *Wallet) GetCredentials() []*Credential {
+	if x != nil {
+		return x.Credentials
+	}
+	return nil
+}
+
 var File_arash_proto protoreflect.FileDescriptor
 
 var file_arash_proto_rawDesc = []byte{
 	0x0a, 0x0b, 0x61, 0x72, 0x61, 0x73, 0x68, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x06, 0x69,
-	0x6e, 0x74, 0x65, 0x72, 0x6e, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x61,
-	0x0a, 0x0d, 0x51, 0x52, 0x43, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
-	0x10, 0x0a, 0x03, 0x64, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x64, 0x69,
-	0x64, 0x12, 0x23, 0x0a, 0x0d, 0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x74, 0x6f, 0x6b,
-	0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e,
-	0x74, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x19, 0x0a, 0x08, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x5f,
-	0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x49,
-	0x64, 0x22, 0x24, 0x0a, 0x0e, 0x51, 0x52, 0x43, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x2b, 0x0a, 0x06, 0x45, 0x76, 0x65, 0x6e, 0x74,
-	0x73, 0x12, 0x21, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x0d, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x52, 0x04,
-	0x64, 0x61, 0x74, 0x61, 0x22, 0x76, 0x0a, 0x05, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x12, 0x0a,
-	0x04, 0x62, 0x61, 0x6e, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x62, 0x61, 0x6e,
-	0x64, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x65, 0x6e, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x05, 0x76, 0x65, 0x6e, 0x75, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65,
-	0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x12, 0x19, 0x0a,
-	0x08, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x07, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x65,
-	0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x61, 0x74, 0x65, 0x32, 0x75, 0x0a, 0x07,
-	0x47, 0x69, 0x67, 0x73, 0x61, 0x66, 0x65, 0x12, 0x2a, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x45, 0x76,
-	0x65, 0x6e, 0x74, 0x73, 0x12, 0x0d, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x45, 0x6d,
-	0x70, 0x74, 0x79, 0x1a, 0x0e, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x45, 0x76, 0x65,
-	0x6e, 0x74, 0x73, 0x12, 0x3e, 0x0a, 0x0d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x54, 0x69,
-	0x63, 0x6b, 0x65, 0x74, 0x12, 0x15, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x51, 0x52,
-	0x43, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x69, 0x6e,
-	0x74, 0x65, 0x72, 0x6e, 0x2e, 0x51, 0x52, 0x43, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x32, 0x10, 0x0a, 0x0e, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x47, 0x61,
-	0x74, 0x65, 0x77, 0x61, 0x79, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6e, 0x74, 0x65, 0x72, 0x6e, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x44,
+	0x0a, 0x07, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x17, 0x0a, 0x07, 0x6f, 0x6c, 0x64,
+	0x5f, 0x64, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6f, 0x6c, 0x64, 0x44,
+	0x69, 0x64, 0x12, 0x20, 0x0a, 0x0b, 0x69, 0x73, 0x46, 0x6f, 0x72, 0x67, 0x6f, 0x74, 0x74, 0x65,
+	0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0b, 0x69, 0x73, 0x46, 0x6f, 0x72, 0x67, 0x6f,
+	0x74, 0x74, 0x65, 0x6e, 0x22, 0x54, 0x0a, 0x0e, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x69, 0x73, 0x56, 0x61, 0x6c, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x69, 0x73, 0x56, 0x61, 0x6c, 0x69, 0x64,
+	0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x64, 0x69, 0x64, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x64, 0x69, 0x64, 0x22, 0x41, 0x0a, 0x0f, 0x50, 0x61,
+	0x79, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a,
+	0x07, 0x69, 0x73, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07,
+	0x69, 0x73, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x19, 0x0a,
+	0x03, 0x44, 0x49, 0x44, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x36, 0x0a, 0x06, 0x54, 0x69, 0x63, 0x6b,
+	0x65, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x76,
+	0x65, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x65, 0x76, 0x65, 0x6e, 0x74,
+	0x22, 0x34, 0x0a, 0x07, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x73, 0x12, 0x29, 0x0a, 0x07, 0x74,
+	0x69, 0x63, 0x6b, 0x65, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x69,
+	0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x73, 0x52, 0x07, 0x74,
+	0x69, 0x63, 0x6b, 0x65, 0x74, 0x73, 0x22, 0x61, 0x0a, 0x0d, 0x51, 0x52, 0x43, 0x6f, 0x64, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x64, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x64, 0x69, 0x64, 0x12, 0x23, 0x0a, 0x0d, 0x70, 0x61, 0x79,
+	0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0c, 0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x19,
+	0x0a, 0x08, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x07, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x22, 0x49, 0x0a, 0x0e, 0x51, 0x52, 0x43,
+	0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x64,
+	0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x12,
+	0x23, 0x0a, 0x05, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d,
+	0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x52, 0x05, 0x65,
+	0x76, 0x65, 0x6e, 0x74, 0x22, 0x2b, 0x0a, 0x06, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x21,
+	0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x69,
+	0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x52, 0x04, 0x64, 0x61, 0x74,
+	0x61, 0x22, 0x27, 0x0a, 0x08, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x49, 0x44, 0x73, 0x12, 0x1b, 0x0a,
+	0x09, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x03,
+	0x52, 0x08, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x73, 0x22, 0x76, 0x0a, 0x05, 0x45, 0x76,
+	0x65, 0x6e, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x62, 0x61, 0x6e, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x04, 0x62, 0x61, 0x6e, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x65, 0x6e, 0x75, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x65, 0x6e, 0x75, 0x65, 0x12, 0x14, 0x0a,
+	0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x70, 0x72,
+	0x69, 0x63, 0x65, 0x12, 0x19, 0x0a, 0x08, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x12,
+	0x0a, 0x04, 0x64, 0x61, 0x74, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x61,
+	0x74, 0x65, 0x22, 0x30, 0x0a, 0x0a, 0x50, 0x72, 0x69, 0x76, 0x61, 0x74, 0x65, 0x4b, 0x65, 0x79,
+	0x12, 0x10, 0x0a, 0x03, 0x64, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x64,
+	0x69, 0x64, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x03, 0x6b, 0x65, 0x79, 0x22, 0x2f, 0x0a, 0x09, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x4b, 0x65,
+	0x79, 0x12, 0x10, 0x0a, 0x03, 0x64, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x64, 0x69, 0x64, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x03, 0x6b, 0x65, 0x79, 0x22, 0x30, 0x0a, 0x06, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x12,
+	0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65,
+	0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x48, 0x0a, 0x0a, 0x43, 0x72, 0x65, 0x64, 0x65,
+	0x6e, 0x74, 0x69, 0x61, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x26, 0x0a, 0x06, 0x66, 0x69, 0x65,
+	0x6c, 0x64, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x69, 0x6e, 0x74, 0x65,
+	0x72, 0x6e, 0x2e, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x52, 0x06, 0x66, 0x69, 0x65, 0x6c, 0x64,
+	0x73, 0x22, 0x50, 0x0a, 0x06, 0x57, 0x61, 0x6c, 0x6c, 0x65, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x44,
+	0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x44, 0x49, 0x44, 0x12, 0x34, 0x0a,
+	0x0b, 0x63, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73, 0x18, 0x02, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x12, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x43, 0x72, 0x65, 0x64,
+	0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x52, 0x0b, 0x63, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69,
+	0x61, 0x6c, 0x73, 0x32, 0xa8, 0x01, 0x0a, 0x07, 0x47, 0x69, 0x67, 0x73, 0x61, 0x66, 0x65, 0x12,
+	0x2a, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x0d, 0x2e, 0x69,
+	0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0e, 0x2e, 0x69, 0x6e,
+	0x74, 0x65, 0x72, 0x6e, 0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x31, 0x0a, 0x0c, 0x43,
+	0x68, 0x65, 0x63, 0x6b, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x73, 0x12, 0x10, 0x2e, 0x69, 0x6e,
+	0x74, 0x65, 0x72, 0x6e, 0x2e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x49, 0x44, 0x73, 0x1a, 0x0f, 0x2e,
+	0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x73, 0x12, 0x3e,
+	0x0a, 0x0d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x12,
+	0x15, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x51, 0x52, 0x43, 0x6f, 0x64, 0x65, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e,
+	0x51, 0x52, 0x43, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x4c,
+	0x0a, 0x0e, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x47, 0x61, 0x74, 0x65, 0x77, 0x61, 0x79,
+	0x12, 0x3a, 0x0a, 0x07, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x16, 0x2e, 0x69, 0x6e,
+	0x74, 0x65, 0x72, 0x6e, 0x2e, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x50, 0x61, 0x79,
+	0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x63, 0x0a, 0x0f,
+	0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x4e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b, 0x12,
+	0x2a, 0x0a, 0x08, 0x46, 0x6f, 0x72, 0x67, 0x65, 0x74, 0x4d, 0x65, 0x12, 0x0d, 0x2e, 0x69, 0x6e,
+	0x74, 0x65, 0x72, 0x6e, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0f, 0x2e, 0x69, 0x6e, 0x74,
+	0x65, 0x72, 0x6e, 0x2e, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x24, 0x0a, 0x06, 0x47,
+	0x65, 0x74, 0x44, 0x49, 0x44, 0x12, 0x0d, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x45,
+	0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0b, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x44, 0x49,
+	0x44, 0x32, 0x8b, 0x02, 0x0a, 0x06, 0x41, 0x67, 0x65, 0x6e, 0x63, 0x79, 0x12, 0x29, 0x0a, 0x0a,
+	0x4f, 0x70, 0x65, 0x6e, 0x57, 0x61, 0x6c, 0x6c, 0x65, 0x74, 0x12, 0x0b, 0x2e, 0x69, 0x6e, 0x74,
+	0x65, 0x72, 0x6e, 0x2e, 0x44, 0x49, 0x44, 0x1a, 0x0e, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e,
+	0x2e, 0x57, 0x61, 0x6c, 0x6c, 0x65, 0x74, 0x12, 0x34, 0x0a, 0x0c, 0x45, 0x78, 0x63, 0x68, 0x61,
+	0x6e, 0x67, 0x65, 0x4b, 0x65, 0x79, 0x73, 0x12, 0x11, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e,
+	0x2e, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x4b, 0x65, 0x79, 0x1a, 0x11, 0x2e, 0x69, 0x6e, 0x74,
+	0x65, 0x72, 0x6e, 0x2e, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x4b, 0x65, 0x79, 0x12, 0x33, 0x0a,
+	0x0d, 0x41, 0x64, 0x64, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x12, 0x12,
+	0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69,
+	0x61, 0x6c, 0x1a, 0x0e, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x57, 0x61, 0x6c, 0x6c,
+	0x65, 0x74, 0x12, 0x33, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74,
+	0x69, 0x61, 0x6c, 0x12, 0x0e, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x57, 0x61, 0x6c,
+	0x6c, 0x65, 0x74, 0x1a, 0x12, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x43, 0x72, 0x65,
+	0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x12, 0x36, 0x0a, 0x10, 0x52, 0x65, 0x76, 0x6f, 0x6b,
+	0x65, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x12, 0x12, 0x2e, 0x69, 0x6e,
+	0x74, 0x65, 0x72, 0x6e, 0x2e, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x1a,
+	0x0e, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x2e, 0x57, 0x61, 0x6c, 0x6c, 0x65, 0x74, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -363,25 +1098,59 @@ func file_arash_proto_rawDescGZIP() []byte {
 	return file_arash_proto_rawDescData
 }
 
-var file_arash_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_arash_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_arash_proto_goTypes = []interface{}{
-	(*Empty)(nil),          // 0: intern.Empty
-	(*QRCodeRequest)(nil),  // 1: intern.QRCodeRequest
-	(*QRCodeResponse)(nil), // 2: intern.QRCodeResponse
-	(*Events)(nil),         // 3: intern.Events
-	(*Event)(nil),          // 4: intern.Event
+	(*Empty)(nil),           // 0: intern.Empty
+	(*Success)(nil),         // 1: intern.Success
+	(*PaymentRequest)(nil),  // 2: intern.PaymentRequest
+	(*PaymentResponse)(nil), // 3: intern.PaymentResponse
+	(*DID)(nil),             // 4: intern.DID
+	(*Ticket)(nil),          // 5: intern.Ticket
+	(*Tickets)(nil),         // 6: intern.Tickets
+	(*QRCodeRequest)(nil),   // 7: intern.QRCodeRequest
+	(*QRCodeResponse)(nil),  // 8: intern.QRCodeResponse
+	(*Events)(nil),          // 9: intern.Events
+	(*EventIDs)(nil),        // 10: intern.EventIDs
+	(*Event)(nil),           // 11: intern.Event
+	(*PrivateKey)(nil),      // 12: intern.PrivateKey
+	(*PublicKey)(nil),       // 13: intern.PublicKey
+	(*Fields)(nil),          // 14: intern.Fields
+	(*Credential)(nil),      // 15: intern.Credential
+	(*Wallet)(nil),          // 16: intern.Wallet
 }
 var file_arash_proto_depIdxs = []int32{
-	4, // 0: intern.Events.data:type_name -> intern.Event
-	0, // 1: intern.Gigsafe.GetEvents:input_type -> intern.Empty
-	1, // 2: intern.Gigsafe.RequestTicket:input_type -> intern.QRCodeRequest
-	3, // 3: intern.Gigsafe.GetEvents:output_type -> intern.Events
-	2, // 4: intern.Gigsafe.RequestTicket:output_type -> intern.QRCodeResponse
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	6,  // 0: intern.Tickets.tickets:type_name -> intern.Tickets
+	11, // 1: intern.QRCodeResponse.event:type_name -> intern.Event
+	11, // 2: intern.Events.data:type_name -> intern.Event
+	14, // 3: intern.Credential.fields:type_name -> intern.Fields
+	15, // 4: intern.Wallet.credentials:type_name -> intern.Credential
+	0,  // 5: intern.Gigsafe.GetEvents:input_type -> intern.Empty
+	10, // 6: intern.Gigsafe.CheckTickets:input_type -> intern.EventIDs
+	7,  // 7: intern.Gigsafe.RequestTicket:input_type -> intern.QRCodeRequest
+	2,  // 8: intern.PaymentGateway.Payment:input_type -> intern.PaymentRequest
+	0,  // 9: intern.IdentityNetwork.ForgetMe:input_type -> intern.Empty
+	0,  // 10: intern.IdentityNetwork.GetDID:input_type -> intern.Empty
+	4,  // 11: intern.Agency.OpenWallet:input_type -> intern.DID
+	13, // 12: intern.Agency.ExchangeKeys:input_type -> intern.PublicKey
+	15, // 13: intern.Agency.AddCredential:input_type -> intern.Credential
+	16, // 14: intern.Agency.GetCredential:input_type -> intern.Wallet
+	15, // 15: intern.Agency.RevokeCredential:input_type -> intern.Credential
+	9,  // 16: intern.Gigsafe.GetEvents:output_type -> intern.Events
+	6,  // 17: intern.Gigsafe.CheckTickets:output_type -> intern.Tickets
+	8,  // 18: intern.Gigsafe.RequestTicket:output_type -> intern.QRCodeResponse
+	3,  // 19: intern.PaymentGateway.Payment:output_type -> intern.PaymentResponse
+	1,  // 20: intern.IdentityNetwork.ForgetMe:output_type -> intern.Success
+	4,  // 21: intern.IdentityNetwork.GetDID:output_type -> intern.DID
+	16, // 22: intern.Agency.OpenWallet:output_type -> intern.Wallet
+	13, // 23: intern.Agency.ExchangeKeys:output_type -> intern.PublicKey
+	16, // 24: intern.Agency.AddCredential:output_type -> intern.Wallet
+	15, // 25: intern.Agency.GetCredential:output_type -> intern.Credential
+	16, // 26: intern.Agency.RevokeCredential:output_type -> intern.Wallet
+	16, // [16:27] is the sub-list for method output_type
+	5,  // [5:16] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_arash_proto_init() }
@@ -403,7 +1172,7 @@ func file_arash_proto_init() {
 			}
 		}
 		file_arash_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QRCodeRequest); i {
+			switch v := v.(*Success); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -415,7 +1184,7 @@ func file_arash_proto_init() {
 			}
 		}
 		file_arash_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QRCodeResponse); i {
+			switch v := v.(*PaymentRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -427,7 +1196,7 @@ func file_arash_proto_init() {
 			}
 		}
 		file_arash_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Events); i {
+			switch v := v.(*PaymentResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -439,7 +1208,151 @@ func file_arash_proto_init() {
 			}
 		}
 		file_arash_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DID); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_arash_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Ticket); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_arash_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Tickets); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_arash_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QRCodeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_arash_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QRCodeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_arash_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Events); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_arash_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*EventIDs); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_arash_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Event); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_arash_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PrivateKey); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_arash_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PublicKey); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_arash_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Fields); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_arash_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Credential); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_arash_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Wallet); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -457,9 +1370,9 @@ func file_arash_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_arash_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   17,
 			NumExtensions: 0,
-			NumServices:   2,
+			NumServices:   4,
 		},
 		GoTypes:           file_arash_proto_goTypes,
 		DependencyIndexes: file_arash_proto_depIdxs,
@@ -485,6 +1398,8 @@ const _ = grpc.SupportPackageIsVersion6
 type GigsafeClient interface {
 	// Get Events
 	GetEvents(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Events, error)
+	// Check Tickets
+	CheckTickets(ctx context.Context, in *EventIDs, opts ...grpc.CallOption) (*Tickets, error)
 	// Request Ticket
 	RequestTicket(ctx context.Context, in *QRCodeRequest, opts ...grpc.CallOption) (*QRCodeResponse, error)
 }
@@ -506,6 +1421,15 @@ func (c *gigsafeClient) GetEvents(ctx context.Context, in *Empty, opts ...grpc.C
 	return out, nil
 }
 
+func (c *gigsafeClient) CheckTickets(ctx context.Context, in *EventIDs, opts ...grpc.CallOption) (*Tickets, error) {
+	out := new(Tickets)
+	err := c.cc.Invoke(ctx, "/intern.Gigsafe/CheckTickets", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *gigsafeClient) RequestTicket(ctx context.Context, in *QRCodeRequest, opts ...grpc.CallOption) (*QRCodeResponse, error) {
 	out := new(QRCodeResponse)
 	err := c.cc.Invoke(ctx, "/intern.Gigsafe/RequestTicket", in, out, opts...)
@@ -519,6 +1443,8 @@ func (c *gigsafeClient) RequestTicket(ctx context.Context, in *QRCodeRequest, op
 type GigsafeServer interface {
 	// Get Events
 	GetEvents(context.Context, *Empty) (*Events, error)
+	// Check Tickets
+	CheckTickets(context.Context, *EventIDs) (*Tickets, error)
 	// Request Ticket
 	RequestTicket(context.Context, *QRCodeRequest) (*QRCodeResponse, error)
 }
@@ -529,6 +1455,9 @@ type UnimplementedGigsafeServer struct {
 
 func (*UnimplementedGigsafeServer) GetEvents(context.Context, *Empty) (*Events, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetEvents not implemented")
+}
+func (*UnimplementedGigsafeServer) CheckTickets(context.Context, *EventIDs) (*Tickets, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckTickets not implemented")
 }
 func (*UnimplementedGigsafeServer) RequestTicket(context.Context, *QRCodeRequest) (*QRCodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RequestTicket not implemented")
@@ -552,6 +1481,24 @@ func _Gigsafe_GetEvents_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GigsafeServer).GetEvents(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Gigsafe_CheckTickets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EventIDs)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GigsafeServer).CheckTickets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/intern.Gigsafe/CheckTickets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GigsafeServer).CheckTickets(ctx, req.(*EventIDs))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -583,6 +1530,10 @@ var _Gigsafe_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Gigsafe_GetEvents_Handler,
 		},
 		{
+			MethodName: "CheckTickets",
+			Handler:    _Gigsafe_CheckTickets_Handler,
+		},
+		{
 			MethodName: "RequestTicket",
 			Handler:    _Gigsafe_RequestTicket_Handler,
 		},
@@ -595,6 +1546,8 @@ var _Gigsafe_serviceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type PaymentGatewayClient interface {
+	// Payment
+	Payment(ctx context.Context, in *PaymentRequest, opts ...grpc.CallOption) (*PaymentResponse, error)
 }
 
 type paymentGatewayClient struct {
@@ -605,22 +1558,398 @@ func NewPaymentGatewayClient(cc grpc.ClientConnInterface) PaymentGatewayClient {
 	return &paymentGatewayClient{cc}
 }
 
+func (c *paymentGatewayClient) Payment(ctx context.Context, in *PaymentRequest, opts ...grpc.CallOption) (*PaymentResponse, error) {
+	out := new(PaymentResponse)
+	err := c.cc.Invoke(ctx, "/intern.PaymentGateway/Payment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PaymentGatewayServer is the server API for PaymentGateway service.
 type PaymentGatewayServer interface {
+	// Payment
+	Payment(context.Context, *PaymentRequest) (*PaymentResponse, error)
 }
 
 // UnimplementedPaymentGatewayServer can be embedded to have forward compatible implementations.
 type UnimplementedPaymentGatewayServer struct {
 }
 
+func (*UnimplementedPaymentGatewayServer) Payment(context.Context, *PaymentRequest) (*PaymentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Payment not implemented")
+}
+
 func RegisterPaymentGatewayServer(s *grpc.Server, srv PaymentGatewayServer) {
 	s.RegisterService(&_PaymentGateway_serviceDesc, srv)
+}
+
+func _PaymentGateway_Payment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentGatewayServer).Payment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/intern.PaymentGateway/Payment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentGatewayServer).Payment(ctx, req.(*PaymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 var _PaymentGateway_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "intern.PaymentGateway",
 	HandlerType: (*PaymentGatewayServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "arash.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Payment",
+			Handler:    _PaymentGateway_Payment_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "arash.proto",
+}
+
+// IdentityNetworkClient is the client API for IdentityNetwork service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type IdentityNetworkClient interface {
+	// Forget Me
+	ForgetMe(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Success, error)
+	// Get DID
+	GetDID(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*DID, error)
+}
+
+type identityNetworkClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewIdentityNetworkClient(cc grpc.ClientConnInterface) IdentityNetworkClient {
+	return &identityNetworkClient{cc}
+}
+
+func (c *identityNetworkClient) ForgetMe(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Success, error) {
+	out := new(Success)
+	err := c.cc.Invoke(ctx, "/intern.IdentityNetwork/ForgetMe", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *identityNetworkClient) GetDID(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*DID, error) {
+	out := new(DID)
+	err := c.cc.Invoke(ctx, "/intern.IdentityNetwork/GetDID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// IdentityNetworkServer is the server API for IdentityNetwork service.
+type IdentityNetworkServer interface {
+	// Forget Me
+	ForgetMe(context.Context, *Empty) (*Success, error)
+	// Get DID
+	GetDID(context.Context, *Empty) (*DID, error)
+}
+
+// UnimplementedIdentityNetworkServer can be embedded to have forward compatible implementations.
+type UnimplementedIdentityNetworkServer struct {
+}
+
+func (*UnimplementedIdentityNetworkServer) ForgetMe(context.Context, *Empty) (*Success, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ForgetMe not implemented")
+}
+func (*UnimplementedIdentityNetworkServer) GetDID(context.Context, *Empty) (*DID, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDID not implemented")
+}
+
+func RegisterIdentityNetworkServer(s *grpc.Server, srv IdentityNetworkServer) {
+	s.RegisterService(&_IdentityNetwork_serviceDesc, srv)
+}
+
+func _IdentityNetwork_ForgetMe_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IdentityNetworkServer).ForgetMe(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/intern.IdentityNetwork/ForgetMe",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IdentityNetworkServer).ForgetMe(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IdentityNetwork_GetDID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IdentityNetworkServer).GetDID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/intern.IdentityNetwork/GetDID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IdentityNetworkServer).GetDID(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _IdentityNetwork_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "intern.IdentityNetwork",
+	HandlerType: (*IdentityNetworkServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ForgetMe",
+			Handler:    _IdentityNetwork_ForgetMe_Handler,
+		},
+		{
+			MethodName: "GetDID",
+			Handler:    _IdentityNetwork_GetDID_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "arash.proto",
+}
+
+// AgencyClient is the client API for Agency service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type AgencyClient interface {
+	// Open Wallet
+	OpenWallet(ctx context.Context, in *DID, opts ...grpc.CallOption) (*Wallet, error)
+	// Exchange Keys
+	ExchangeKeys(ctx context.Context, in *PublicKey, opts ...grpc.CallOption) (*PublicKey, error)
+	// Add credential
+	AddCredential(ctx context.Context, in *Credential, opts ...grpc.CallOption) (*Wallet, error)
+	// GetCredentials
+	GetCredential(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*Credential, error)
+	// Revoke Credential
+	RevokeCredential(ctx context.Context, in *Credential, opts ...grpc.CallOption) (*Wallet, error)
+}
+
+type agencyClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewAgencyClient(cc grpc.ClientConnInterface) AgencyClient {
+	return &agencyClient{cc}
+}
+
+func (c *agencyClient) OpenWallet(ctx context.Context, in *DID, opts ...grpc.CallOption) (*Wallet, error) {
+	out := new(Wallet)
+	err := c.cc.Invoke(ctx, "/intern.Agency/OpenWallet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agencyClient) ExchangeKeys(ctx context.Context, in *PublicKey, opts ...grpc.CallOption) (*PublicKey, error) {
+	out := new(PublicKey)
+	err := c.cc.Invoke(ctx, "/intern.Agency/ExchangeKeys", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agencyClient) AddCredential(ctx context.Context, in *Credential, opts ...grpc.CallOption) (*Wallet, error) {
+	out := new(Wallet)
+	err := c.cc.Invoke(ctx, "/intern.Agency/AddCredential", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agencyClient) GetCredential(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*Credential, error) {
+	out := new(Credential)
+	err := c.cc.Invoke(ctx, "/intern.Agency/GetCredential", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *agencyClient) RevokeCredential(ctx context.Context, in *Credential, opts ...grpc.CallOption) (*Wallet, error) {
+	out := new(Wallet)
+	err := c.cc.Invoke(ctx, "/intern.Agency/RevokeCredential", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AgencyServer is the server API for Agency service.
+type AgencyServer interface {
+	// Open Wallet
+	OpenWallet(context.Context, *DID) (*Wallet, error)
+	// Exchange Keys
+	ExchangeKeys(context.Context, *PublicKey) (*PublicKey, error)
+	// Add credential
+	AddCredential(context.Context, *Credential) (*Wallet, error)
+	// GetCredentials
+	GetCredential(context.Context, *Wallet) (*Credential, error)
+	// Revoke Credential
+	RevokeCredential(context.Context, *Credential) (*Wallet, error)
+}
+
+// UnimplementedAgencyServer can be embedded to have forward compatible implementations.
+type UnimplementedAgencyServer struct {
+}
+
+func (*UnimplementedAgencyServer) OpenWallet(context.Context, *DID) (*Wallet, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OpenWallet not implemented")
+}
+func (*UnimplementedAgencyServer) ExchangeKeys(context.Context, *PublicKey) (*PublicKey, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExchangeKeys not implemented")
+}
+func (*UnimplementedAgencyServer) AddCredential(context.Context, *Credential) (*Wallet, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCredential not implemented")
+}
+func (*UnimplementedAgencyServer) GetCredential(context.Context, *Wallet) (*Credential, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCredential not implemented")
+}
+func (*UnimplementedAgencyServer) RevokeCredential(context.Context, *Credential) (*Wallet, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RevokeCredential not implemented")
+}
+
+func RegisterAgencyServer(s *grpc.Server, srv AgencyServer) {
+	s.RegisterService(&_Agency_serviceDesc, srv)
+}
+
+func _Agency_OpenWallet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgencyServer).OpenWallet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/intern.Agency/OpenWallet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgencyServer).OpenWallet(ctx, req.(*DID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Agency_ExchangeKeys_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublicKey)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgencyServer).ExchangeKeys(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/intern.Agency/ExchangeKeys",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgencyServer).ExchangeKeys(ctx, req.(*PublicKey))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Agency_AddCredential_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Credential)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgencyServer).AddCredential(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/intern.Agency/AddCredential",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgencyServer).AddCredential(ctx, req.(*Credential))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Agency_GetCredential_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Wallet)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgencyServer).GetCredential(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/intern.Agency/GetCredential",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgencyServer).GetCredential(ctx, req.(*Wallet))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Agency_RevokeCredential_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Credential)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AgencyServer).RevokeCredential(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/intern.Agency/RevokeCredential",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AgencyServer).RevokeCredential(ctx, req.(*Credential))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Agency_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "intern.Agency",
+	HandlerType: (*AgencyServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "OpenWallet",
+			Handler:    _Agency_OpenWallet_Handler,
+		},
+		{
+			MethodName: "ExchangeKeys",
+			Handler:    _Agency_ExchangeKeys_Handler,
+		},
+		{
+			MethodName: "AddCredential",
+			Handler:    _Agency_AddCredential_Handler,
+		},
+		{
+			MethodName: "GetCredential",
+			Handler:    _Agency_GetCredential_Handler,
+		},
+		{
+			MethodName: "RevokeCredential",
+			Handler:    _Agency_RevokeCredential_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "arash.proto",
 }

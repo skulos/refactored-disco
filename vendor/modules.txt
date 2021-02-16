@@ -7,6 +7,9 @@ github.com/golang/protobuf/ptypes/duration
 github.com/golang/protobuf/ptypes/timestamp
 # github.com/google/go-cmp v0.5.4
 ## explicit
+# github.com/schollz/jsonstore v1.1.0
+## explicit
+github.com/schollz/jsonstore
 # golang.org/x/net v0.0.0-20210119194325-5f4716e94777
 ## explicit
 golang.org/x/net/http/httpguts
